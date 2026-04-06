@@ -7,7 +7,7 @@ export default function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img 
-          src="/photos and cv/profile cover photo.png" 
+          src="/media/profile_cover_photo.png" 
           alt="Profile Cover" 
           className="w-full h-full object-cover object-center opacity-90"
         />
@@ -45,7 +45,7 @@ export default function Hero() {
               View Projects <ArrowRight size={18} />
             </a>
             <a
-              href="/photos and cv/CV.pdf"
+              href="/media/cv.pdf"
               target="_blank"
               rel="noreferrer"
               className="px-8 py-3.5 rounded-full bg-white/90 backdrop-blur-md text-gray-900 font-medium hover:bg-white transition-colors border border-gray-200 shadow-sm flex items-center gap-2"

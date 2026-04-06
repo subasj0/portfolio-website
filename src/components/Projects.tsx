@@ -6,7 +6,7 @@ const projects = [
     title: "Suchak AI",
     description: "AI-powered data analyst platform for enterprises such as insurance companies. Enables full-scale data analysis, creation of intelligent agents, and integration with multiple data sources including WhatsApp.",
     link: "https://studio-427767455-d34c4.web.app/",
-    image: "/photos and cv/suchak_home.png",
+    image: "/media/suchak_home.png",
     features: [
       "AI-driven analytics: SQL agent, dashboard agent, modeling tasks",
       "Create beautiful BI dashboards based on your database",
@@ -19,7 +19,7 @@ const projects = [
     title: "BeemaBot – AI Insurance Chatbot",
     description: "AI-powered chatbot designed for insurance companies to explain policies, assist customers, and perform agentic tasks such as selling insurance products.",
     link: "#",
-    image: "/photos and cv/beemabot app.png",
+    image: "/media/beemabot_app.png",
     features: [
       "Policy explanation & Conversational AI",
       "Automation of insurance workflows",
