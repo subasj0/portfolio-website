@@ -18,3 +18,13 @@ View your app in AI Studio: https://ai.studio/apps/e9352933-ace9-49df-b224-da003
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+
+## Legal URLs (for Meta app settings)
+
+- Privacy Policy: `/privacy-policy.html`
+- Terms of Service: `/terms-of-service.html`
+
+When deployed, replace the leading slash with your domain, for example:
+
+- `https://your-domain.com/privacy-policy.html`
+- `https://your-domain.com/terms-of-service.html`

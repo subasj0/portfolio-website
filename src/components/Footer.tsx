@@ -6,6 +6,8 @@ export default function Footer() {
           &copy; {new Date().getFullYear()} Subash Joshi. All rights reserved.
         </p>
         <div className="flex items-center gap-6">
+          <a href="/privacy-policy.html" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Privacy Policy</a>
+          <a href="/terms-of-service.html" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Terms of Service</a>
           <a href="#" className="text-sm text-gray-500 hover:text-gray-900 transition-colors">Back to top</a>
         </div>
       </div>
