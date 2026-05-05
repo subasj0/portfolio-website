@@ -1,7 +1,21 @@
 import { motion } from 'motion/react';
-import { ExternalLink, Database, Bot, LayoutDashboard, MessageSquare } from 'lucide-react';
+import { ExternalLink, Database, Bot, LayoutDashboard, MessageSquare, BookOpen, Sparkles } from 'lucide-react';
 
 const projects = [
+  {
+    title: "LearnForge",
+    description:
+      "An AI-native learning platform that turns books, PDFs, or a simple \"what do you want to learn?\" prompt into structured, personalized courses. Deep AI integration supports guided lessons, tailored study paths, and community-shared courses so learners can go from raw material to practice faster.",
+    link: "https://learnforge-28280253296.asia-south1.run.app/",
+    image: "/media/learnforge_app.png",
+    features: [
+      "Create courses from uploads, documents, or free-text learning goals",
+      "Guided lessons and personalization for how you study",
+      "Drag-and-drop material intake with a clean, focused study flow",
+      "Explore community courses and example learning paths (e.g. skills, history, languages)"
+    ],
+    icons: [<BookOpen size={16} />, <Sparkles size={16} />]
+  },
   {
     title: "Suchak AI",
     description: "AI-powered data analyst platform for enterprises such as insurance companies. Enables full-scale data analysis, creation of intelligent agents, and integration with multiple data sources including WhatsApp.",
@@ -36,7 +50,7 @@ export default function Projects() {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="mb-16 md:mb-24">
           <h2 className="text-3xl md:text-5xl font-display font-bold mb-4 text-gray-900">Featured <span className="text-gradient">Projects</span></h2>
-          <p className="text-gray-600 text-lg max-w-2xl">Showcasing intelligent systems built for enterprise data analytics and insurance automation.</p>
+          <p className="text-gray-600 text-lg max-w-2xl">Showcasing intelligent systems for AI-native learning, enterprise data analytics, and insurance automation.</p>
         </div>
 
         <div className="grid gap-16 md:gap-24">
