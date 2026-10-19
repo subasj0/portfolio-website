@@ -1,6 +1,6 @@
-# Subash Joshi — portfolio
+# Subash Joshi — actuarial portfolio
 
-A responsive portfolio for actuarial analysis, AI engineering, and automation. Built with React and Vite, then prerendered to HTML so the published homepage needs **no client JavaScript**. Native links and the mobile disclosure menu also work with JavaScript disabled.
+An interactive portfolio focused on actuarial analysis, insurance, and data. Dark editorial design, an AI-styled portrait, expandable project stories, and a working pricing playground.
 
 ## Development
 
@@ -11,9 +11,9 @@ npm ci
 npm run dev
 ```
 
-No API keys, backend, or database are required. Content lives in `src/App.tsx`, styling in `src/index.css`, and static files in `public/`.
+No API keys, backend, or database are required. Content lives in `src/App.tsx`, styling in `src/index.css`, browser interactions in `src/interactions.ts`, and static assets in `public/`.
 
-## Production
+## Production architecture
 
 ```sh
 npm run lint
@@ -21,19 +21,36 @@ npm run build
 npm run preview
 ```
 
-The build runs Vite and then `scripts/prerender.tsx`. Deploy **dist/**, including its generated HTML. Fonts are self-hosted. Project images are lazy-loaded WebP files with explicit dimensions. The original image files remain available for social metadata and existing links. `public/_headers` supplies caching and basic security headers for Cloudflare Pages.
+Vite builds the page and a standalone interaction entry. `scripts/prerender.tsx` renders complete HTML, removes the React browser entry and its module preload links, then adds only the small interaction script using Vite's manifest. Production visitors do not download React. Fonts are local; the hero portrait uses responsive WebP assets and high fetch priority. Other images are lazy-loaded.
 
-### Cloudflare Pages
+The interaction layer provides portrait switching, bounded pointer tilt, motion controls, pricing calculations, mobile-menu closing, and clipboard copying where supported. Native project disclosures and navigation work without JavaScript. Without JavaScript, the pricing model shows its base case with disabled controls. Motion honors the visitor's OS preference and can be paused explicitly.
 
-Use build command `npm run build` and output directory `dist`, with the repository root as the build directory. The production branch and Git integration must be checked in the existing Cloudflare project; this repository does not declare them. A Git push alone is not evidence of a successful deployment.
+### Pricing playground
 
-After deployment, check the homepage, mobile navigation, `/media/CV.pdf`, `/privacy-policy.html`, and `/terms-of-service.html`. View source should contain the portfolio content and no module script. The only script is structured SEO data. Contact actions open the visitor's email application; there is no message-submission backend.
+The model is an illustration, not a quoting engine or a client result:
 
-## Content and design
+- 1,000 annual policies with NPR 10,000 premium per policy.
+- Frequency is expected annual claims per policy (5–30%).
+- Average claim severity ranges from NPR 10,000 to NPR 100,000.
+- Pure premium = frequency × average claim severity.
+- Expected claims = policy count × pure premium.
+- Expected loss ratio = expected claims / total premium.
+- Expenses, profit, and uncertainty margins are excluded and disclosed in the UI.
+- Both chart bars use the same fixed 0–30m NPR scale.
 
-The visual direction uses warm paper tones, ink, orange accents, local Manrope and DM Mono fonts, and an inline SVG systems diagram. Project descriptions are based on the existing repository content; no unverified usage figures or additional credentials are claimed. The CV path is case-sensitive: `/media/CV.pdf`.
+The base case (12%, NPR 50,000) gives a NPR 6,000 pure premium and 60% loss ratio. The stress case (20%, NPR 75,000) gives NPR 15,000 and 150%.
 
-When adding interactive React components, update prerendering and hydration deliberately: production currently strips the runtime by design.
+### Cloudflare deployment
+
+Deploy **dist/** with build command `npm run build` from the repository root. Pushing `main` triggered the previous deployment, confirmed by the owner. `public/_headers` supplies cache and security headers for Cloudflare Pages. Verify each new release separately.
+
+After deployment, check the portrait switch, project expansion, model sliders/presets, mobile menu, `/media/CV.pdf`, `/privacy-policy.html`, and `/terms-of-service.html`. Contact opens an email application; there is no message-submission backend.
+
+### Portrait and content
+
+The hero is an AI-styled editorial portrait generated from the owner's existing photo with permission. The UI identifies it as AI-styled. “Off duty” switches to the actual original mountain photo. Responsive derivatives are `portrait-480.webp` and `portrait-800.webp`; `subash.webp` is the original-photo derivative. Existing original assets are preserved.
+
+Professional claims remain based on existing portfolio content: Actuarial Analyst at Plantsat, Google Advanced Data Analytics, and the documented projects. No additional qualifications, client outcomes, or employment history are invented. The CV path is case-sensitive: `/media/CV.pdf`.
 
 ## Browser tests
 
@@ -42,4 +59,4 @@ npx playwright install chromium
 npm test
 ```
 
-For an existing Chromium installation, set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to its executable path. Tests build the production site, then verify mobile and desktop layouts without JavaScript, navigation, images, CV and legal content types, and automated accessibility. Run `npm run lint` separately for TypeScript.
+To use an installed Chromium, set `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` to its executable. Tests cover desktop/mobile layouts with JavaScript disabled, portrait switching, project disclosures, model calculations and boundaries, keyboard inputs, reduced motion, accessibility in desktop/mobile states, asset types, and the production JavaScript budget. Run `npm run lint` separately for TypeScript.

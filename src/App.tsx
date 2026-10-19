@@ -1,10 +1,10 @@
-const Arrow = () => (
+const Arrow = ({ down = false }: { down?: boolean }) => (
   <svg
-    className="arrow-icon"
+    className={`arrow-icon ${down ? "down" : ""}`}
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    strokeWidth="1.6"
+    strokeWidth="1.5"
     aria-hidden="true"
   >
     <path d="M5 19 19 5M5 5h14v14" />
@@ -16,133 +16,222 @@ const Star = () => (
     viewBox="0 0 32 32"
     fill="none"
     stroke="currentColor"
-    strokeWidth="2"
+    strokeWidth="1.5"
     aria-hidden="true"
   >
     <path d="M16 1v30M1 16h30M5.4 5.4l21.2 21.2M5.4 26.6 26.6 5.4" />
   </svg>
 );
+
 const projects = [
   {
-    name: "Suchak AI",
-    type: "DATA & INTELLIGENCE",
+    name: "BeemaBot",
+    discipline: "INSURANCE / CONVERSATIONAL AI",
     number: "01",
-    description: "Your data. A better conversation.",
+    description: "Making the fine print a conversation.",
     detail:
-      "An AI analyst that connects enterprise data with SQL agents, dashboards, and modeling workflows. Built to make complex business questions easier to explore.",
+      "Insurance is only useful when people understand it. BeemaBot explores a more approachable way to explain policies, support customers, and connect insurance workflows.",
+    image: "beemabot",
+    width: 550,
+    height: 801,
+    tags: ["Policy understanding", "Insurance workflows", "Conversational AI"],
+    href: "mailto:subasj0@gmail.com?subject=Tell%20me%20about%20BeemaBot",
+    action: "Discuss the project",
+    color: "lime",
+  },
+  {
+    name: "Suchak AI",
+    discipline: "ANALYTICS / DECISION SUPPORT",
+    number: "02",
+    description: "From a mountain of data to a clearer answer.",
+    detail:
+      "An AI analyst for enterprise data: SQL agents, dashboards, and modeling workflows in one place. Built around the questions people need to answer, not just the charts they can create.",
     image: "suchak",
-    tags: ["AI agents", "SQL", "Business intelligence"],
+    width: 960,
+    height: 519,
+    tags: ["Data exploration", "SQL agents", "Business intelligence"],
     href: "https://studio-427767455-d34c4.web.app/",
+    action: "Explore the app",
     color: "lavender",
   },
   {
     name: "LearnForge",
-    type: "AI & EDUCATION",
-    number: "02",
-    description: "From curiosity to a learning path.",
-    detail:
-      "Turn a PDF, a book, or a learning goal into a structured course. Guided lessons and personalized study paths bring scattered material into focus.",
-    image: "learnforge",
-    tags: ["Generative AI", "Personalized learning"],
-    href: "https://learnforge-28280253296.asia-south1.run.app/",
-    color: "peach",
-  },
-  {
-    name: "BeemaBot",
-    type: "INSURANCE & AUTOMATION",
+    discipline: "SIDE PROJECT / LEARNING",
     number: "03",
-    description: "Insurance, in plain language.",
+    description: "Curiosity deserves a little structure.",
     detail:
-      "A conversational interface for understanding policies and navigating insurance workflows, with an analytics dashboard for the teams behind the service.",
-    image: "beemabot",
-    tags: ["Conversational AI", "Insurance"],
-    href: "mailto:subasj0@gmail.com?subject=Tell%20me%20about%20BeemaBot",
-    color: "mint",
+      "A learning experiment that turns a book, PDF, or learning goal into a structured course. Guided lessons and personalized study paths help turn a pile of material into a place to start.",
+    image: "learnforge",
+    width: 960,
+    height: 540,
+    tags: ["Generative AI", "Personalized learning", "Product thinking"],
+    href: "https://learnforge-28280253296.asia-south1.run.app/",
+    action: "Explore the app",
+    color: "peach",
   },
 ];
 
-function SystemDiagram() {
+function RiskLab() {
   return (
-    <div
-      className="system-panel"
-      aria-label="Diagram showing data and domain knowledge becoming useful AI tools"
+    <section
+      className="lab-section section"
+      id="playground"
+      aria-labelledby="lab-title"
     >
-      <div className="panel-label">
-        <span className="dot" /> THE WAY I THINK <span>FIG. 01</span>
+      <div className="wrap">
+        <div className="section-heading reveal">
+          <div>
+            <p className="eyebrow">02 / A LITTLE APPLIED CURIOSITY</p>
+            <h2 id="lab-title">
+              Small changes.
+              <br />
+              <em>Different outcomes.</em>
+            </h2>
+          </div>
+          <p>
+            Risk isn’t a single number.
+            <br />
+            Move the assumptions. Watch the story change.
+          </p>
+        </div>
+        <div className="risk-lab reveal">
+          <fieldset className="lab-controls" disabled>
+            <legend className="sr-only">Pricing model assumptions</legend>
+            <div className="lab-topline">
+              <span className="live-dot" /> INTERACTIVE / PRICING LAB
+            </div>
+            <h3>What does risk cost?</h3>
+            <p>
+              Start with two ingredients: how often a claim happens, and how
+              much it costs.
+            </p>
+            <div
+              className="presets"
+              role="group"
+              aria-label="Pricing scenarios"
+            >
+              <button type="button" data-preset="base" aria-pressed="true">
+                Base case
+              </button>
+              <button type="button" data-preset="stress" aria-pressed="false">
+                Stress test <span aria-hidden="true">↗</span>
+              </button>
+            </div>
+            <label className="range-label" htmlFor="frequency">
+              Claim frequency{" "}
+              <output id="frequency-value" htmlFor="frequency">
+                12%
+              </output>
+            </label>
+            <input
+              id="frequency"
+              name="frequency"
+              type="range"
+              min="5"
+              max="30"
+              step="1"
+              defaultValue="12"
+              aria-describedby="frequency-help"
+            />
+            <p className="range-help" id="frequency-help">
+              Expected claims per 100 policies per year
+            </p>
+            <label className="range-label" htmlFor="severity">
+              Average claim{" "}
+              <output id="severity-value" htmlFor="severity">
+                NPR 50,000
+              </output>
+            </label>
+            <input
+              id="severity"
+              name="severity"
+              type="range"
+              min="10000"
+              max="100000"
+              step="5000"
+              defaultValue="50000"
+              aria-describedby="severity-help"
+            />
+            <p className="range-help" id="severity-help">
+              Average cost of each claim, in Nepalese rupees
+            </p>
+            <button type="button" className="reset-lab" id="reset-lab">
+              Reset assumptions <span aria-hidden="true">↺</span>
+            </button>
+            <noscript>
+              <p className="no-js-note">
+                Enable JavaScript to adjust this illustrative model. The base
+                case is shown.
+              </p>
+            </noscript>
+          </fieldset>
+          <div className="lab-visual">
+            <div className="lab-visual-heading">
+              <span className="eyebrow">EXPECTED CLAIMS / PREMIUM</span>
+              <span className="model-badge">ILLUSTRATIVE MODEL</span>
+            </div>
+            <div className="ratio-readout">
+              <span id="loss-ratio">60</span>
+              <span className="ratio-unit">
+                %<small>expected loss ratio</small>
+              </span>
+            </div>
+            <div
+              className="risk-chart"
+              role="img"
+              aria-label="Expected claims cost 6 million NPR against 10 million NPR in premiums"
+              id="risk-chart"
+            >
+              <div className="chart-grid" aria-hidden="true">
+                <i />
+                <i />
+                <i />
+                <i />
+                <i />
+              </div>
+              <div className="bar-row">
+                <span>Premium</span>
+                <div className="bar-track">
+                  <div className="premium-bar" style={{ width: "33.333%" }} />
+                  <span>NPR 10m</span>
+                </div>
+              </div>
+              <div className="bar-row">
+                <span>Claims</span>
+                <div className="bar-track">
+                  <div
+                    className="claims-bar"
+                    id="claims-bar"
+                    style={{ width: "20%" }}
+                  />
+                  <span id="claims-total">NPR 6m</span>
+                </div>
+              </div>
+              <div className="chart-axis">
+                <span>0</span>
+                <span>NPR 30m</span>
+              </div>
+            </div>
+            <div className="lab-results" aria-live="polite" aria-atomic="true">
+              <div>
+                <span>PURE PREMIUM / POLICY</span>
+                <strong id="pure-premium">NPR 6,000</strong>
+              </div>
+              <p id="model-insight">
+                Expected claims use 60% of premium, before expenses and other
+                costs.
+              </p>
+            </div>
+            <p className="lab-footnote">
+              1,000 policies · NPR 10,000 premium per policy · Annual view
+              <br />
+              Frequency × average claim = expected cost per policy. Simplified
+              illustration, excluding expenses, profit, and uncertainty margins.
+            </p>
+          </div>
+        </div>
       </div>
-      <svg
-        className="system-diagram"
-        viewBox="0 0 560 420"
-        role="img"
-        aria-labelledby="diagram-title"
-      >
-        <title id="diagram-title">
-          Connecting data, actuarial thinking, and AI to build useful systems
-        </title>
-        <defs>
-          <pattern
-            id="grid"
-            width="24"
-            height="24"
-            patternUnits="userSpaceOnUse"
-          >
-            <circle cx="1" cy="1" r="1" fill="#d8d5ca" />
-          </pattern>
-        </defs>
-        <rect width="560" height="420" fill="url(#grid)" />
-        <g fill="none" stroke="#a7a99d" strokeWidth="1.5">
-          <path d="M135 110H230Q280 110 280 170V215" />
-          <path d="M425 110H330Q280 110 280 170" />
-          <path d="M280 270V318H130V345M280 318H430V345" />
-          <circle cx="280" cy="220" r="100" strokeDasharray="4 8" />
-        </g>
-        <g className="diagram-node">
-          <rect x="45" y="66" width="180" height="70" rx="8" />
-          <rect x="335" y="66" width="180" height="70" rx="8" />
-        </g>
-        <g className="diagram-text">
-          <text x="135" y="97">
-            DATA
-          </text>
-          <text x="135" y="118" className="diagram-small">
-            signals, not noise
-          </text>
-          <text x="425" y="97">
-            DOMAIN KNOWLEDGE
-          </text>
-          <text x="425" y="118" className="diagram-small">
-            context matters
-          </text>
-        </g>
-        <rect x="207" y="178" width="146" height="92" rx="12" fill="#ea542e" />
-        <g fill="#fff" textAnchor="middle">
-          <text x="280" y="215" fontSize="25" fontWeight="700">
-            build( )
-          </text>
-          <text x="280" y="242" fontSize="11" letterSpacing="2">
-            HUMAN + AI
-          </text>
-        </g>
-        <g className="diagram-node">
-          <rect x="55" y="345" width="150" height="45" rx="22" />
-          <rect x="355" y="345" width="150" height="45" rx="22" />
-        </g>
-        <g className="diagram-text">
-          <text x="130" y="373">
-            CLEARER DECISIONS
-          </text>
-          <text x="430" y="373">
-            USEFUL TOOLS
-          </text>
-        </g>
-        <circle cx="280" cy="318" r="5" fill="#ea542e" />
-        <circle cx="135" cy="110" r="0" />
-      </svg>
-      <div className="panel-footer">
-        <span>Complexity in. Clarity out.</span>
-        <span aria-hidden="true">↳</span>
-      </div>
-    </div>
+    </section>
   );
 }
 
@@ -152,84 +241,186 @@ export default function App() {
       <a className="skip-link" href="#main">
         Skip to content
       </a>
+      <div className="scroll-progress" aria-hidden="true" />
       <header className="site-header wrap">
-        <a className="wordmark" href="#" aria-label="sj. — Subash Joshi home">
+        <a href="#" className="wordmark" aria-label="sj. — Subash Joshi home">
           sj<span>.</span>
         </a>
         <nav className="desktop-nav" aria-label="Main navigation">
-          <a href="#projects">Selected work</a>
-          <a href="#about">About</a>
-          <a href="#expertise">Expertise</a>
+          <a href="#projects">
+            Work <span>01</span>
+          </a>
+          <a href="#playground">
+            Playground <span>02</span>
+          </a>
+          <a href="#about">
+            About <span>03</span>
+          </a>
         </nav>
-        <a className="header-contact" href="#contact">
-          Let’s talk <Arrow />
-        </a>
+        <div className="header-actions">
+          <button
+            id="motion-toggle"
+            className="motion-toggle"
+            type="button"
+            aria-pressed="false"
+            hidden
+          >
+            <span className="motion-symbol" aria-hidden="true">
+              <svg
+                viewBox="0 0 12 12"
+                width="12"
+                height="12"
+                fill="currentColor"
+              >
+                <path className="pause-symbol" d="M2 2h2v8H2zm6 0h2v8H8z" />
+                <path className="play-symbol" d="m3 1 8 5-8 5z" />
+              </svg>
+            </span>
+            <span id="motion-label">Pause motion</span>
+          </button>
+          <a href="#contact" className="header-contact">
+            Let’s talk <Arrow />
+          </a>
+        </div>
         <details className="mobile-menu">
-          <summary aria-label="Open navigation">
+          <summary aria-label="Menu — Open navigation">
             Menu <span aria-hidden="true">+</span>
           </summary>
           <nav aria-label="Mobile navigation">
             <a href="#projects">Selected work</a>
+            <a href="#playground">Playground</a>
             <a href="#about">About</a>
-            <a href="#expertise">Expertise</a>
             <a href="#contact">Contact</a>
           </nav>
         </details>
       </header>
       <main id="main">
         <section className="hero wrap" aria-labelledby="hero-title">
-          <div className="hero-copy">
-            <p className="eyebrow">
-              <span className="dot" /> SUBASH JOSHI · BASED IN NEPAL
-            </p>
-            <h1 id="hero-title">
-              Turning complex
-              <br />
-              problems into
-              <br />
-              <em>useful things.</em>
-            </h1>
-            <p className="hero-description">
-              Actuarial thinking. AI engineering. A builder’s mindset.
-              <br className="desktop-break" /> I connect data and technology to
-              make work simpler.
-            </p>
-            <div className="hero-actions">
-              <a className="button" href="#projects">
-                Explore my work <Arrow />
-              </a>
-              <a
-                className="text-link"
-                href="/media/CV.pdf"
-                target="_blank"
-                rel="noreferrer"
+          <div className="hero-meta">
+            <span className="eyebrow">
+              <span className="live-dot" /> SUBASH JOSHI / ACTUARIAL ANALYST
+            </span>
+            <span className="eyebrow">
+              BASED IN NEPAL <span aria-hidden="true">↗</span>
+            </span>
+          </div>
+          <div className="hero-grid">
+            <div className="hero-copy">
+              <p className="hero-intro">
+                A head for numbers. An instinct to question.
+              </p>
+              <h1 id="hero-title">
+                Making sense
+                <br />
+                of <em>uncertainty.</em>
+              </h1>
+              <p className="hero-description">
+                I connect actuarial thinking, data, and a builder’s mindset to
+                turn complex risks into clearer decisions.
+              </p>
+              <div className="hero-actions">
+                <a className="button" href="#projects">
+                  Discover my work <Arrow />
+                </a>
+                <a className="text-link" href="#playground">
+                  Play with the numbers <span aria-hidden="true">↓</span>
+                </a>
+              </div>
+              <div className="hero-specialties">
+                <span>PRICING</span>
+                <i />
+                <span>RESERVING</span>
+                <i />
+                <span>ANALYTICS</span>
+              </div>
+            </div>
+            <div className="portrait-stage" id="portrait-stage">
+              <div className="portrait-orbit" aria-hidden="true" />
+              <div className="portrait-cross cross-one" aria-hidden="true">
+                +
+              </div>
+              <div className="portrait-cross cross-two" aria-hidden="true">
+                +
+              </div>
+              <div className="portrait-card" id="portrait-card">
+                <img
+                  id="hero-portrait"
+                  src="/media/portrait-800.webp"
+                  srcSet="/media/portrait-480.webp 480w, /media/portrait-800.webp 800w"
+                  sizes="(max-width: 760px) 86vw, 38vw"
+                  width="800"
+                  height="1000"
+                  alt="AI-styled editorial portrait of Subash Joshi"
+                  fetchPriority="high"
+                />
+                <div className="portrait-card-footer">
+                  <span>SUBASH JOSHI</span>
+                  <span id="portrait-caption">THE ANALYTICAL SIDE</span>
+                </div>
+              </div>
+              <div className="portrait-sticker" aria-hidden="true">
+                <Star />
+                <span>
+                  CURIOUS
+                  <br />
+                  BY DEFAULT.
+                </span>
+              </div>
+              <div
+                className="portrait-switch"
+                role="group"
+                aria-label="Portrait style"
+                hidden
               >
-                Download CV <span aria-hidden="true">↓</span>
-              </a>
+                <button
+                  type="button"
+                  data-portrait="studio"
+                  aria-pressed="true"
+                >
+                  Studio
+                </button>
+                <button
+                  type="button"
+                  data-portrait="outside"
+                  aria-pressed="false"
+                >
+                  Off duty <Arrow />
+                </button>
+              </div>
+              <p className="portrait-note" id="portrait-note">
+                AI-styled portrait, based on my photo.
+              </p>
             </div>
           </div>
-          <SystemDiagram />
           <div className="hero-bottom">
-            <span>AT THE INTERSECTION OF NUMBERS & POSSIBILITIES</span>
+            <span>
+              <span className="index-mark">↳</span> LESS GUESSWORK. MORE
+              PERSPECTIVE.
+            </span>
             <a href="#projects">
-              SCROLL TO EXPLORE <span aria-hidden="true">↓</span>
+              TAKE A LOOK AROUND <Arrow down />
             </a>
           </div>
         </section>
-        <div className="discipline-strip">
-          <div className="wrap">
-            <span>Actuarial science</span>
-            <b aria-hidden="true">
-              <Star />
-            </b>
-            <span>Artificial intelligence</span>
-            <b aria-hidden="true">
-              <Star />
-            </b>
-            <span>Thoughtful automation</span>
-            <b aria-hidden="true">
-              <Star />
-            </b>
+        <div
+          className="marquee"
+          aria-label="Actuarial thinking, data curiosity, human perspective"
+        >
+          <div className="marquee-track">
+            {[0, 1].map((i) => (
+              <div
+                className="marquee-group"
+                key={i}
+                aria-hidden={i === 1 ? true : undefined}
+              >
+                <span>Actuarial thinking</span>
+                <Star />
+                <span>Data curiosity</span>
+                <Star />
+                <span>Human perspective</span>
+                <Star />
+              </div>
+            ))}
           </div>
         </div>
         <section
@@ -237,82 +428,76 @@ export default function App() {
           id="projects"
           aria-labelledby="work-title"
         >
-          <div className="section-heading">
+          <div className="section-heading reveal">
             <div>
-              <p className="eyebrow">01 / SELECTED WORK</p>
+              <p className="eyebrow">01 / SELECTED EXPLORATIONS</p>
               <h2 id="work-title">
-                Ideas, made real<span>.</span>
+                Thinking is good.
+                <br />
+                <em>Making is better.</em>
               </h2>
             </div>
             <p>
-              Tools for learning, understanding data,
+              A few ways I’ve turned questions into tools.
               <br />
-              and making insurance more accessible.
+              Insurance first. Curiosity everywhere.
             </p>
           </div>
-          <div className="project-grid">
-            {projects.map((project) => (
-              <article
-                className={`project-card ${project.color}`}
-                key={project.name}
+          <div className="projects-list">
+            {projects.map((p, index) => (
+              <details
+                className={`project-item ${p.color} reveal`}
+                key={p.name}
+                name="selected-project"
+                open={index === 0}
               >
-                <a
-                  className="project-image"
-                  href={project.href}
-                  target={
-                    project.href.startsWith("https") ? "_blank" : undefined
-                  }
-                  rel="noreferrer"
-                >
-                  <div className="project-image-top">
-                    <span>{project.type}</span>
-                    <span>{project.number}</span>
-                  </div>
-                  <img
-                    src={`/media/${project.image}.webp`}
-                    alt={`${project.name} application interface`}
-                    width={project.image === "beemabot" ? 550 : 960}
-                    height={
-                      project.image === "beemabot"
-                        ? 801
-                        : project.image === "suchak"
-                          ? 519
-                          : 540
-                    }
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <span className="project-open" aria-hidden="true">
-                    <Arrow />
+                <summary>
+                  <span className="project-number">{p.number}</span>
+                  <h3>{p.name}</h3>
+                  <span className="project-discipline">{p.discipline}</span>
+                  <span className="project-plus" aria-hidden="true">
+                    +
                   </span>
-                </a>
-                <div className="project-content">
-                  <div className="project-title">
-                    <h3>{project.name}</h3>
-                    <span className="mono">{project.number}</span>
+                </summary>
+                <div className="project-expanded">
+                  <div className={`project-preview ${p.image}`}>
+                    <div className="preview-grid" aria-hidden="true" />
+                    <span className="preview-caption">
+                      {p.discipline.split(" / ")[0]} / IN PRACTICE
+                    </span>
+                    <img
+                      src={`/media/${p.image}.webp`}
+                      alt={`${p.name} application interface`}
+                      width={p.width}
+                      height={p.height}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <span className="preview-stamp" aria-hidden="true">
+                      <Star />
+                    </span>
                   </div>
-                  <h4>{project.description}</h4>
-                  <p>{project.detail}</p>
-                  <ul className="tags" aria-label="Project topics">
-                    {project.tags.map((tag) => (
-                      <li key={tag}>{tag}</li>
-                    ))}
-                  </ul>
-                  <a
-                    className="text-link"
-                    href={project.href}
-                    target={
-                      project.href.startsWith("https") ? "_blank" : undefined
-                    }
-                    rel="noreferrer"
-                  >
-                    {project.name === "BeemaBot"
-                      ? "Let’s talk about it"
-                      : "Explore the app"}{" "}
-                    <Arrow />
-                  </a>
+                  <div className="project-story">
+                    <p className="eyebrow">THE IDEA</p>
+                    <h4>{p.description}</h4>
+                    <p>{p.detail}</p>
+                    <ul className="tags" aria-label="Project topics">
+                      {p.tags.map((tag) => (
+                        <li key={tag}>{tag}</li>
+                      ))}
+                    </ul>
+                    <a
+                      className="text-link"
+                      href={p.href}
+                      target={p.href.startsWith("https") ? "_blank" : undefined}
+                      rel="noreferrer"
+                    >
+                      {p.action}
+                      <Arrow />
+                    </a>
+                  </div>
                 </div>
-              </article>
+              </details>
             ))}
           </div>
           <a
@@ -321,146 +506,103 @@ export default function App() {
             target="_blank"
             rel="noreferrer"
           >
-            <span>There’s more behind the scenes.</span> Find me on GitHub{" "}
-            <Arrow />
+            <span>More experiments, less polish.</span> Behind the scenes on
+            GitHub <Arrow />
           </a>
         </section>
+        <RiskLab />
         <section
-          className="about-section"
+          className="about-section wrap section"
           id="about"
           aria-labelledby="about-title"
         >
-          <div className="wrap about-grid section">
-            <div className="about-visual">
-              <p className="eyebrow">A LITTLE ABOUT ME</p>
-              <div className="portrait-frame">
-                <img
-                  src="/media/subash.webp"
-                  alt="Subash Joshi seated outdoors"
-                  width="680"
-                  height="510"
-                  loading="lazy"
-                  decoding="async"
-                />
-                <span className="portrait-caption">
-                  SUBASH JOSHI
-                  <br />
-                  <span>NEPAL / EVERYWHERE</span>
-                </span>
+          <div className="about-heading reveal">
+            <p className="eyebrow">03 / THE WAY I SEE IT</p>
+            <h2 id="about-title">
+              The model matters.
+              <br />
+              <em>So does the judgment.</em>
+            </h2>
+            <div className="about-signature">
+              Subash Joshi <Star />
+            </div>
+          </div>
+          <div className="about-copy reveal">
+            <p className="about-lead">
+              I’m an actuarial analyst who likes to get beyond the spreadsheet.
+            </p>
+            <p>
+              Based in Nepal and working at Plantsat, I bring an analytical lens
+              to insurance: understanding risk, questioning assumptions, and
+              finding the story in the data.
+            </p>
+            <p>
+              My interests span non-life pricing, reserving, and predictive
+              modeling. I also build tools, because good analysis becomes more
+              useful when people can actually work with it.
+            </p>
+            <p>
+              AI and automation are part of that toolkit. The goal stays the
+              same: clearer thinking and better-informed decisions.
+            </p>
+            <div className="credentials">
+              <div>
+                <span>CURRENTLY</span>
+                <a href="https://plantsat.com" target="_blank" rel="noreferrer">
+                  Actuarial Analyst · Plantsat <Arrow />
+                </a>
               </div>
-              <div className="about-note">
-                <span aria-hidden="true">
-                  <Star />
-                </span>
-                <p>
-                  Curious by default.
-                  <br />
-                  Practical by design.
-                </p>
+              <div>
+                <span>ALSO IN THE TOOLKIT</span>
+                <p>Google Advanced Data Analytics</p>
               </div>
             </div>
-            <div className="about-copy">
-              <p className="eyebrow">02 / THE PERSON BEHIND THE PROJECTS</p>
-              <h2 id="about-title">
-                A head for numbers.
-                <br />
-                An instinct to <em>build.</em>
-              </h2>
-              <p>
-                I’m Subash, an actuarial analyst and AI engineer based in Nepal.
-                My work sits where rigorous analysis meets hands-on software
-                development.
-              </p>
-              <p>
-                At Plantsat, I work with actuarial models and data. In my
-                projects, I bring that same analytical mindset to AI agents,
-                learning tools, and business automation. I’m interested in
-                technology that helps someone understand more, decide better, or
-                get time back.
-              </p>
-              <div className="credentials">
-                <div>
-                  <span className="mono">CURRENTLY</span>
-                  <a
-                    href="https://plantsat.com"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Actuarial Analyst · Plantsat <Arrow />
-                  </a>
-                </div>
-                <div>
-                  <span className="mono">CERTIFICATION</span>
-                  <span>Google Advanced Data Analytics</span>
-                </div>
-              </div>
-              <a
-                className="text-link"
-                href="/media/CV.pdf"
-                target="_blank"
-                rel="noreferrer"
-              >
-                A closer look at my background <span aria-hidden="true">↓</span>
-              </a>
-            </div>
+            <a
+              className="text-link"
+              href="/media/CV.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Download CV <span aria-hidden="true">↓</span>
+            </a>
           </div>
         </section>
         <section
-          className="expertise-section wrap section"
+          className="expertise-section wrap"
           id="expertise"
-          aria-labelledby="expertise-title"
+          aria-label="Areas of focus"
         >
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">03 / HOW I CAN HELP</p>
-              <h2 id="expertise-title">
-                From question to solution<span>.</span>
-              </h2>
-            </div>
-          </div>
-          <div className="expertise-grid">
-            {[
-              [
-                "01",
-                "Understand the numbers",
-                "Actuarial & analytics",
-                "Pricing, reserving, and predictive models that turn complex data into a clearer basis for decisions.",
-                "Python / SQL / Excel",
-              ],
-              [
-                "02",
-                "Build the intelligence",
-                "AI systems & agents",
-                "Conversational tools and AI agents that connect your data to practical, domain-specific workflows.",
-                "LangGraph / ADK / React",
-              ],
-              [
-                "03",
-                "Connect the pieces",
-                "Workflow automation",
-                "APIs, integrations, and custom tools that reduce repetitive work and help systems work together.",
-                "n8n / APIs / Docker",
-              ],
-            ].map(([number, title, category, detail, tools]) => (
-              <article key={number}>
-                <div className="expertise-icon" aria-hidden="true">
-                  {number === "01" ? (
-                    <Arrow />
-                  ) : number === "02" ? (
-                    <Star />
-                  ) : (
-                    "⌘"
-                  )}
-                </div>
-                <span className="mono">
-                  {number} / {category}
+          {[
+            [
+              "01",
+              "Price the risk.",
+              "Non-life pricing",
+              "Frequency and severity analysis, segmentation, and predictive modeling to understand the cost of risk.",
+            ],
+            [
+              "02",
+              "Look ahead.",
+              "Reserving & uncertainty",
+              "Claims development, reserve estimates, and scenario analysis to explore what the numbers might become.",
+            ],
+            [
+              "03",
+              "Make it useful.",
+              "Analytics & tools",
+              "Clear dashboards, practical models, and thoughtful automation that bring analysis into everyday decisions.",
+            ],
+          ].map(([n, title, label, text]) => (
+            <article className="expertise-card reveal" key={n}>
+              <div className="expertise-top">
+                <span>
+                  {n} / {label}
                 </span>
-                <h3>{title}</h3>
-                <p>{detail}</p>
-                <span className="tool-list">{tools}</span>
-              </article>
-            ))}
-          </div>
+                <Star />
+              </div>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </article>
+          ))}
         </section>
         <section
           className="contact-section"
@@ -468,40 +610,53 @@ export default function App() {
           aria-labelledby="contact-title"
         >
           <div className="wrap section">
-            <p className="eyebrow">04 / NEXT UP: YOUR IDEA</p>
-            <div className="contact-heading">
+            <p className="eyebrow reveal">
+              04 / GOOD WORK STARTS WITH A CONVERSATION
+            </p>
+            <a
+              href="mailto:subasj0@gmail.com"
+              className="contact-heading reveal"
+              aria-label="Let’s make sense of it. — Email Subash Joshi"
+            >
               <h2 id="contact-title">
-                Something worth
+                Let’s make
                 <br />
-                <em>building together?</em>
+                sense of it<span>.</span>
               </h2>
-              <a
-                className="contact-arrow"
-                href="mailto:subasj0@gmail.com"
-                aria-label="Email Subash Joshi"
-              >
+              <span className="contact-arrow">
                 <Arrow />
-              </a>
-            </div>
+              </span>
+            </a>
             <div className="contact-bottom">
               <p>
-                Have a tricky problem, an early idea, or a project in mind?
+                A risk question, a data challenge, or something
                 <br />
-                I’d love to hear about it.
+                you haven’t quite figured out yet. I’m listening.
               </p>
-              <a href="mailto:subasj0@gmail.com">
-                subasj0@gmail.com <Arrow />
-              </a>
+              <div className="email-actions">
+                <a href="mailto:subasj0@gmail.com">
+                  subasj0@gmail.com <Arrow />
+                </a>
+                <button
+                  id="copy-email"
+                  type="button"
+                  hidden
+                  aria-label="Copy email address"
+                >
+                  Copy
+                </button>
+                <span id="copy-status" className="sr-only" role="status" />
+              </div>
             </div>
           </div>
         </section>
       </main>
       <footer className="wrap">
         <div className="footer-top">
-          <a className="wordmark" href="#" aria-label="sj. — Back to top">
+          <a href="#" className="wordmark" aria-label="sj. — Back to top">
             sj<span>.</span>
           </a>
-          <p>Thoughtful systems. Useful things.</p>
+          <p>Analytical mind. Curious human.</p>
           <nav aria-label="Social links">
             <a
               href="https://github.com/subasj0"
@@ -517,17 +672,15 @@ export default function App() {
             >
               LinkedIn <Arrow />
             </a>
-            <a
-              href="https://www.upwork.com/freelancers/~012ab7756a7bb95ca0"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Upwork <Arrow />
+            <a href="/media/CV.pdf" target="_blank" rel="noreferrer">
+              Résumé <Arrow />
             </a>
           </nav>
         </div>
         <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} Subash Joshi</span>
+          <span>
+            © {new Date().getFullYear()} SUBASH JOSHI / MADE WITH INTENTION
+          </span>
           <div>
             <a href="/privacy-policy.html">Privacy</a>
             <a href="/terms-of-service.html">Terms</a>
