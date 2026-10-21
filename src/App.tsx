@@ -345,17 +345,16 @@ export default function App() {
               <div className="portrait-card" id="portrait-card">
                 <img
                   id="hero-portrait"
-                  src="/media/portrait-800.webp"
-                  srcSet="/media/portrait-480.webp 480w, /media/portrait-800.webp 800w"
+                  src="/media/subash.webp"
                   sizes="(max-width: 760px) 86vw, 38vw"
                   width="800"
                   height="1000"
-                  alt="AI-styled editorial portrait of Subash Joshi"
+                  alt="Subash Joshi exploring the snowy mountains of Nepal"
                   fetchPriority="high"
                 />
                 <div className="portrait-card-footer">
                   <span>SUBASH JOSHI</span>
-                  <span id="portrait-caption">THE ANALYTICAL SIDE</span>
+                  <span id="portrait-caption">THE CURIOUS SIDE</span>
                 </div>
               </div>
               <div className="portrait-sticker" aria-hidden="true">
@@ -375,20 +374,20 @@ export default function App() {
                 <button
                   type="button"
                   data-portrait="studio"
-                  aria-pressed="true"
+                  aria-pressed="false"
                 >
                   Studio
                 </button>
                 <button
                   type="button"
                   data-portrait="outside"
-                  aria-pressed="false"
+                  aria-pressed="true"
                 >
                   Off duty <Arrow />
                 </button>
               </div>
               <p className="portrait-note" id="portrait-note">
-                AI-styled portrait, based on my photo.
+                Away from the models. Out in the mountains.
               </p>
             </div>
           </div>
