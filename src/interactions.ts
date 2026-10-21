@@ -43,6 +43,7 @@ export function initializeInteractions() {
   });
   const portrait = document.querySelector<HTMLImageElement>("#hero-portrait")!;
   document.querySelector<HTMLElement>(".portrait-switch")!.hidden = false;
+  portrait.classList.add("outside");
   document
     .querySelectorAll<HTMLButtonElement>("[data-portrait]")
     .forEach((button) => {
